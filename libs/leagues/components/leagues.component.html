@@ -4,10 +4,12 @@
     nz-input
     [formControl]="leagueFromControl"
     [nzAutocomplete]="auto"
+    data-cy="leagues-input"
   />
   <nz-autocomplete nzBackfill #auto>
     @for (option of (leagues | async) || []; track $index) {
       <nz-auto-option
+        data-cy="league-option"
         [nzLabel]="option.name"
         [nzValue]="option._id"
         (click)="onLeagueChange(option._id)"
@@ -22,6 +24,7 @@
       <div
         *ngFor="let team of teamsData; track: $index"
         class="team-card"
+        data-cy="team-card"
         (click)="onTeamSelected(team._id)"
       >
         <img

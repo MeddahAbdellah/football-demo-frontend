@@ -16,15 +16,18 @@ export class ClientService {
     this.delete = this.createMethod('delete');
   }
 
-  get: <T>(url: string, options?: any) => Observable<T>;
-  post: <T>(url: string, body: any, options?: any) => Observable<T>;
-  put: <T>(url: string, body: any, options?: any) => Observable<T>;
-  delete: <T>(url: string, options?: any) => Observable<T>;
+  get: <T>(url: string, options?: unknown) => Observable<T>;
+  post: <T>(url: string, body: unknown, options?: unknown) => Observable<T>;
+  put: <T>(url: string, body: unknown, options?: unknown) => Observable<T>;
+  delete: <T>(url: string, options?: unknown) => Observable<T>;
 
   private createMethod(method: 'get' | 'post' | 'put' | 'delete') {
-    return <T>(url: string, ...args: any[]): Observable<T> => {
+    return <T>(url: string, ...args: unknown[]): Observable<T> => {
       const fullUrl = `${this.baseUrl}${url}`;
-      return (this.http[method] as Function).bind(this.http)(fullUrl, ...args);
+      return (this.http[method] as (...args: unknown[]) => Observable<T>)(
+        fullUrl,
+        ...args,
+      );
     };
   }
 }

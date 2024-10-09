@@ -1,6 +1,10 @@
 @if (players | async; as playersData) {
   @if (playersData.length > 0) {
-    <div *ngFor="let player of playersData; track: $index" class="player-card">
+    <div
+      *ngFor="let player of playersData; track: $index"
+      class="player-card"
+      data-cy="player-card"
+    >
       <img
         [src]="player.thumbnail"
         [alt]="player.name"
