@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ClientService {
+  // The base URL should be fetched from a config. For simplicity, it is hardcoded here.
   private baseUrl = 'http://localhost:7661';
 
   constructor(private http: HttpClient) {
