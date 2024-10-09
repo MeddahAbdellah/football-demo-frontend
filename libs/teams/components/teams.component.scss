@@ -1,0 +1,55 @@
+:host {
+  .player-card {
+    display: flex;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    align-items: center;
+  }
+
+  .player-thumbnail {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+
+  .player-info {
+    padding: 16px;
+    flex-grow: 1;
+  }
+
+  .player-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+  }
+
+  .player-position,
+  .player-signin,
+  .player-born {
+    font-size: 14px;
+    margin: 4px 0;
+  }
+
+  .player-position {
+    font-style: italic;
+    color: #666;
+  }
+
+  .player-signin {
+    font-weight: 500;
+  }
+
+  .player-born {
+    color: #777;
+  }
+  .no-teams-message {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

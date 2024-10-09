@@ -1,0 +1,44 @@
+<div class="leagues-input">
+  <input
+    placeholder="Choose a league"
+    nz-input
+    [formControl]="leagueFromControl"
+    [nzAutocomplete]="auto"
+  />
+  <nz-autocomplete nzBackfill #auto>
+    @for (option of (leagues | async) || []; track $index) {
+      <nz-auto-option
+        [nzLabel]="option.name"
+        [nzValue]="option._id"
+        (click)="onLeagueChange(option._id)"
+        >{{ option.name }}</nz-auto-option
+      >
+    }
+  </nz-autocomplete>
+</div>
+<div class="teams-container">
+  @if (teams | async; as teamsData) {
+    @if (teamsData.length > 0) {
+      <div
+        *ngFor="let team of teamsData; track: $index"
+        class="team-card"
+        (click)="onTeamSelected(team._id)"
+      >
+        <img
+          [src]="team.thumbnail"
+          [alt]="team.name + ' thumbnail'"
+          class="team-thumbnail"
+        />
+        <h2>{{ team.name }}</h2>
+      </div>
+    } @else {
+      <div class="no-teams-message">
+        <p>No teams available for your selected league.</p>
+      </div>
+    }
+  } @else {
+    <div class="no-teams-message">
+      <p>An error occurred please try again later</p>
+    </div>
+  }
+</div>

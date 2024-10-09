@@ -1,0 +1,27 @@
+@if (players | async; as playersData) {
+  @if (playersData.length > 0) {
+    <div *ngFor="let player of playersData; track: $index" class="player-card">
+      <img
+        [src]="player.thumbnail"
+        [alt]="player.name"
+        class="player-thumbnail"
+      />
+      <div class="player-info">
+        <h3 class="player-name">{{ player.name }}</h3>
+        <p class="player-position">{{ player.position }}</p>
+        <p class="player-signin">
+          Sign-in: {{ player.signin.amount | currency: player.signin.currency }}
+        </p>
+        <p class="player-born">Born: {{ player.born }}</p>
+      </div>
+    </div>
+  } @else {
+    <div class="no-players-message">
+      <p>No players for your selected team.</p>
+    </div>
+  }
+} @else {
+  <div class="no-players-message">
+    <p>An error occurred please try again later</p>
+  </div>
+}
